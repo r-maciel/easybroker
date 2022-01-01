@@ -27,7 +27,7 @@ def status_not_successful(code, data):
 
         return True
 
-def get_paginator(limit, page, data, index_len):
+def get_paginator(limit, page, data, index_len, url):
     """ Datos de la paginación en templates """
     next_page = (page + 1) if data['next_page'] else None
     last_page = math.ceil(data['total'] / limit)
@@ -39,7 +39,8 @@ def get_paginator(limit, page, data, index_len):
         'next_page': next_page,
         'prev_page': prev_page,
         'last_page': last_page,
-        'pages': pages
+        'pages': pages,
+        'url': url,
     }
 
     return paginator
@@ -65,7 +66,7 @@ def index(request):
 
     context = {
         'properties': data['content'],
-        'paginator': get_paginator(limit, page, data['pagination'], 3),
+        'paginator': get_paginator(limit, page, data['pagination'], 3, 'properties:index'),
     }
 
     return render(request, 'properties/index.html', context)

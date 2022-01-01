@@ -2,29 +2,29 @@
     <ul class="pagination justify-content-center">
         {% if paginator.current_page > 1 %}
             <li class="page-item">
-                <a class="page-link" href="{% url 'properties:index' %}?page=1">Primera</a>
+                <a class="page-link" href="{% url paginator.url %}?page=1">Primera</a>
             </li>
         {% endif %}
         {% if paginator.prev_page %}
             <li class="page-item">
-                <a class="page-link" href="{% url 'properties:index' %}?page={{ paginator.prev_page }}">
+                <a class="page-link" href="{% url paginator.url %}?page={{ paginator.prev_page }}">
                 <strong>&LeftAngleBracket;</strong></a>
             </li>
         {% endif %}
         {% for page in paginator.pages %}
             <li class="page-item {% if paginator.current_page == page %} active {% endif %}">
-                <a class="page-link" href="{% url 'properties:index' %}?page={{ page }}">{{ page }}</a>
+                <a class="page-link" href="{% url paginator.url %}?page={{ page }}">{{ page }}</a>
             </li>
         {% endfor %}
         {% if paginator.next_page %}
             <li class="page-item">
-                <a class="page-link" href="{% url 'properties:index' %}?page={{ paginator.next_page }}">
+                <a class="page-link" href="{% url paginator.url %}?page={{ paginator.next_page }}">
                 <strong>&RightAngleBracket;</strong></a>
             </li>
         {% endif %}
         {% if paginator.last_page > paginator.current_page %}
             <li class="page-item">
-                <a class="page-link" href="{% url 'properties:index' %}?page={{ paginator.last_page }}">Última</a>
+                <a class="page-link" href="{% url paginator.url %}?page={{ paginator.last_page }}">Última</a>
             </li>
         {% endif %}
     </ul>
