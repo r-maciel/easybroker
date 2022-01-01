@@ -6,13 +6,7 @@
 {# Estilos de la galería #}
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.3.0/css/lightgallery.css"/>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.3.0/css/lg-zoom.css"/>
-<style>
-    .inline-gallery-container {
-        width: 100%;
-        height: 500px;
-        position: relative;
-      }
-</style>
+<link rel="stylesheet" href="{% static 'css/properties/details.css' %}">
 {% endblock styles %}
 
 {% block header_links%}<a href="{% url 'properties:index' %}" class="link-light">Home</a>{% endblock header_links%}
@@ -29,7 +23,7 @@
                 <p class="card-text"><strong>Localización:</strong> {{ property.location.name }}</p>
                 <p class="card-text"><small class="text-muted"><strong>ID:</strong> {{ property.public_id }}</small></p>
                 {% if property.location.latitude and property.location.longitude %}
-                    <iframe style="width: 100%; height:400px" src="https://maps.google.com/maps?q={{property.location.latitude}},{{property.location.longitude}}&hl=es;z=14&amp;output=embed"></iframe>
+                    <iframe class="map" src="https://maps.google.com/maps?q={{property.location.latitude}},{{property.location.longitude}}&hl=es;z=14&amp;output=embed"></iframe>
                 {% endif %}
             </div>
         </div>
