@@ -19,8 +19,9 @@
                 {% static 'images/properties/no-image.png' %}
                 {% endif %}" class="card-img-top" alt="Image thumbnail">
                 <div class="card-body">
-                    <h5 class="card-title">{{ property.title|truncatechars:70 }}</h5>
+                    <h5 class="card-title">{{ property.title|truncatechars:60 }}</h5>
                     <p class="card-text">{{ property.location|truncatechars:50 }}</p>
+                    <p class="card-text">{{ property.property_type }}</p>
                     <p class="card-text"><small class="text-muted">ID: {{ property.public_id }}</small></p>
                 </div>
             </div>
