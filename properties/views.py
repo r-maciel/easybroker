@@ -2,20 +2,18 @@ from django.shortcuts import redirect, render
 from django.views.decorators.http import require_http_methods
 import requests, math
 
-import properties
-
 def make_request(url):
     """ Realizar peticiones a cualquier URL """
-    headers = {'accept': 'application/json', 'X-Authorization': 'l7u502p8v46ba3ppgvj5y2aad50lb9'}
+    headers = {'accept': 'application/json', 'content-type': 'application/json', 'X-Authorization': 'l7u502p8v46ba3ppgvj5y2aad50lb9'}
     method = 'GET'
-    
     try:
         response = requests.request(method, url, headers=headers)
-        code = response.status_code
         data = response.json()
+        code = response.status_code
     except requests.exceptions.RequestException as e:
         code = data = None
         print(f'\n{e}\n')
+        
     return code, data
 
 def status_not_successful(code, data):
@@ -50,7 +48,6 @@ def get_paginator(limit, page, data, index_len, url):
 def index(request):
     """ Vista para mostrar las propiedades """
     page = int(request.GET.get('page')) if request.GET.get('page','').isnumeric() else 1 # Evitar valores no deseados
-    print(page)
     limit = 15
     status = 'published'
 
@@ -72,5 +69,17 @@ def index(request):
     return render(request, 'properties/index.html', context)
 
 @require_http_methods(["GET"])
-def details(request):
-    pass
+def details(request, pk):
+    """ Vista para los detalles de las propiedades """
+    url = f'https://api.stagingeb.com/v1/properties/{pk}'
+
+    code, data = make_request(url)
+
+    if status_not_successful(code, data): 
+        return render(request, 'error.html')
+
+    context = {
+        'property': data,
+    }
+
+    return render(request, 'properties/details.html', context)

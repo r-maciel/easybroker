@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block styles %}
+{# Estilos de la galería #}
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.3.0/css/lightgallery.css"/>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.3.0/css/lg-zoom.css"/>
+<style>
+    .inline-gallery-container {
+        width: 100%;
+        height: 500px;
+        position: relative;
+      }
+</style>
+{% endblock styles %}
+
+{% block header_links%}<a href="{% url 'properties:index' %}" class="link-light">Home</a>{% endblock header_links%}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-7">
+        <div class="card mb-3">
+            <div id="inline-gallery-container" class="inline-gallery-container card-img-top"></div>
+            <div class="card-body">
+                <h5 class="card-title">{{ property.title }}</h5>
+                <p class="card-text"><strong>Descripción:</strong> {{ property.description }}</p>
+                <p class="card-text"><strong>Tipo:</strong> {{ property.property_type }}</p>
+                <p class="card-text"><strong>Localización:</strong> {{ property.location.name }}</p>
+                <p class="card-text"><small class="text-muted"><strong>ID:</strong> {{ property.public_id }}</small></p>
+                {% if property.location.latitude and property.location.longitude %}
+                    <iframe style="width: 100%; height:400px" src="https://maps.google.com/maps?q={{property.location.latitude}},{{property.location.longitude}}&hl=es;z=14&amp;output=embed"></iframe>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-5">
+        <div class="card mb-3 p-3">
+            <h3 class="mb-4">Contáctanos</h3>
+            <form>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="name" aria-describedby="nameHelp">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Correo electrónico</label>
+                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Teléfono</label>
+                    <input type="text" class="form-control" id="phone" aria-describedby="phoneHelp">
+                </div>
+                <div class="mb-3">
+                <label for="message" class="form-label">Mensaje</label>
+                <textarea class="form-control" id="message" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block scripts %}
+{# JS de la galería #}
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.3.0/lightgallery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.3.0/plugins/zoom/lg-zoom.min.js"></script>
+
+<script>
+    const $lgContainer = document.getElementById("inline-gallery-container");
+
+    const inlineGallery = lightGallery($lgContainer, {
+        container: $lgContainer,
+        dynamic: true,
+        hash: false,
+        closable: false,
+        showMaximizeIcon: true,
+        appendSubHtmlTo: ".lg-item",
+        slideDelay: 200,
+        plugins: [lgZoom],
+        dynamicEl: [
+            {% for image in property.property_images %}
+            {
+                src: "{{ image.url }}",
+                {% if image.title %}
+                subHtml: `<div class="lightGallery-captions">
+                            <h4>{{ image.title }}</h4>
+                        </div>`
+                {% endif %}
+            },
+            {% empty %}
+            
+            {
+                src: "{% static 'images/properties/no-image.png' %}",
+                subHtml: `<div class="lightGallery-captions">
+                            <h4>Imagen no disponible</h4>
+                        </div>`
+            },
+            {% endfor %}
+        ],
+    });
+
+    setTimeout(() => {
+        inlineGallery.openGallery();
+    }, 200);
+    
+</script>
+{% endblock scripts %}
