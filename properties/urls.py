@@ -5,4 +5,5 @@ app_name = 'properties'
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('<str:pk>', views.details, name='details'),
 ]

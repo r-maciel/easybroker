@@ -70,3 +70,7 @@ def index(request):
     }
 
     return render(request, 'properties/index.html', context)
+
+@require_http_methods(["GET"])
+def details(request):
+    pass
