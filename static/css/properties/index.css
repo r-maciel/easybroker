@@ -1,0 +1,9 @@
+.property-card img {
+    object-fit: fill;
+    height: 260px;
+    width: 100%;
+}
+
+.property-card {
+    min-height: 100%;
+}
