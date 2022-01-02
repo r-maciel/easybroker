@@ -53,6 +53,8 @@ Si el mensaje se logra enviar nos mostrara un alert diciendonos que se ha enviad
 En caso de que no se encuentre el ID de la propiedad nos mostrará un template de error
 [![error page](https://correoipn-my.sharepoint.com/personal/lmaciela1500_alumno_ipn_mx/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Flmaciela1500%5Falumno%5Fipn%5Fmx%2FDocuments%2Feasybroker%2Ferror%2Epng&parent=%2Fpersonal%2Flmaciela1500%5Falumno%5Fipn%5Fmx%2FDocuments%2Feasybroker "error page")](https://correoipn-my.sharepoint.com/personal/lmaciela1500_alumno_ipn_mx/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Flmaciela1500%5Falumno%5Fipn%5Fmx%2FDocuments%2Feasybroker%2Ferror%2Epng&parent=%2Fpersonal%2Flmaciela1500%5Falumno%5Fipn%5Fmx%2FDocuments%2Feasybroker "error page")
 
+En caso de que ni las imágenes ni los links funcionen, aquí dejo el link hacia ellas: https://correoipn-my.sharepoint.com/:f:/g/personal/lmaciela1500_alumno_ipn_mx/EnkscfYG3NRDrCiCYwL-9bYBmXMaVBmcUVd-S2eZ-YBa9Q?e=dPAxpX
+
 ## Notas
 Una de las cosas que decidí implementear fue el guardar la API KEY en un archivo .env, para que no estuvieran directamente en el código y de esta forma dar un poco más de seguridad, ya que en producción este archivo no se sube y se almacenan en las variables del sistema.
 También añadí un alert al momento de que el usuario hace contacto para que sepa que sí se envío su mensaje y tenga más confianza, de igual forma, si se equivoca me pareció buena idea dejar los datos que introdujo para que no tuviera que anotar todo de nuevo y solo lo corrija.
