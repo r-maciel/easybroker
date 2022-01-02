@@ -2,6 +2,7 @@ import math
 
 class MyPaginator:
     """ Clase para obtener los datos necesarios para paginar en template """
+    
     def __init__(self, limit, page, data, index_len, url):
         self.current_page = page
         self.next_page = (page + 1) if data['next_page'] else None

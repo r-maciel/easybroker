@@ -48,6 +48,7 @@ def details(request, pk):
     if new_request.not_successful(): 
         return render(request, 'error.html')
 
+    # En caso de que el usuario se haya equivocado de mostramos los datos pasados para que los corrija
     form = ContactMessage(request.session['form_data']) if 'form_data' in request.session else ContactMessage()
     context = {
         'property': new_request.response_data,
