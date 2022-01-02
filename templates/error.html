@@ -1,4 +1,15 @@
 {% extends 'base.html' %}
+
+{% load static %}
+
 {% block title %}Error{% endblock title %}
 
-{% block content %}Hubo un error{% endblock content %}
+{% block header_links%}<a href="{% url 'properties:index' %}" class="link-light">Home</a>{% endblock header_links%}
+
+{% block content %}
+<div class="d-flex flex-column justify-content-center align-items-center">
+    <h2 class="text-center mb-4">Lo sentimos, no pudimos encontrar el recurso solicitado</h2>
+    <img class="h-25 w-25 mb-4" src="{% static 'images/error.png' %}" alt="Sad image">
+    <h2 class="text-center mb-4">Por favor regresa a la <a href="{% url 'properties:index' %}" class="link-primary">Página principal</a></h2>
+</div>
+{% endblock content %}
