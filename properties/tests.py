@@ -3,7 +3,7 @@ from django.test import TestCase
 from django.urls import reverse
 from .myrequest import MyRequest
 from .mypaginator import MyPaginator
-from . import views
+from django.conf import settings
 import json
 
 # Create your tests here.
@@ -69,7 +69,7 @@ class TestViews(TestCase):
 class TestEasyBrokerAPI(TestCase):
     """ Tests para /properties endpoint """
     
-    headers = {'accept': 'application/json', 'content-type': 'application/json', 'X-Authorization': 'l7u502p8v46ba3ppgvj5y2aad50lb9'}
+    headers = {'accept': 'application/json', 'content-type': 'application/json', 'X-Authorization': settings.EASYBROKER_API_KEY}
 
     def test_properties_code_200(self):
         """ Cuando se el request es exitoso y se trae las propiedades"""
@@ -91,7 +91,7 @@ class TestEasyBrokerAPI(TestCase):
 class TestPropertyDetails(TestCase):
     """ Tests para /properties/{ID} endpoint """
     
-    headers = {'accept': 'application/json', 'content-type': 'application/json', 'X-Authorization': 'l7u502p8v46ba3ppgvj5y2aad50lb9'}
+    headers = {'accept': 'application/json', 'content-type': 'application/json', 'X-Authorization': settings.EASYBROKER_API_KEY}
 
     def test_properties_details_code_200(self):
         """ Cuando se encuentra la propiedad socilictada y el request es exitoso """
@@ -120,7 +120,7 @@ class TestPropertyDetails(TestCase):
 
 class TestContactRequest(TestCase):
     """ Testear /contact_request [POST] endpoint """
-    headers = {'accept': 'application/json', 'content-type': 'application/json', 'X-Authorization': 'l7u502p8v46ba3ppgvj5y2aad50lb9'}
+    headers = {'accept': 'application/json', 'content-type': 'application/json', 'X-Authorization': settings.EASYBROKER_API_KEY}
     contact_data = json.dumps({
         "name": "John Smith",
         "phone": "5559090909",
