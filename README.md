@@ -36,31 +36,24 @@ Nos mostrará la ip y puerto en la que está corriendo nuestra app, generalmente
 
 ### Páginas de la APP
 La primera página que verás será la correspondiente al listado de las propiedades publicadas, mostrará un máximo de 15 por página
-[![Listado1](blob:https://correoipn-my.sharepoint.com/d9daafba-6d9a-4b97-a362-4f175c658206 "Listado1")](https://correoipn-my.sharepoint.com/personal/lmaciela1500_alumno_ipn_mx/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Flmaciela1500%5Falumno%5Fipn%5Fmx%2FDocuments%2Feasybroker%2Flista%20%5Fpropiedades%2Epng&parent=%2Fpersonal%2Flmaciela1500%5Falumno%5Fipn%5Fmx%2FDocuments%2Feasybroker "Listado1")
 ![listado1](https://github.com/r-maciel/easybroker/blob/main/ss/lista_propiedades.png?raw=True "listado1")
 Hasta abajo aparece la paginación para poder navegar entre ellas
-[![Listado paginación](blob:https://correoipn-my.sharepoint.com/5abc345b-7be7-4dba-8a84-a97ae1605df3 "Listado paginación")](https://correoipn-my.sharepoint.com/personal/lmaciela1500_alumno_ipn_mx/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Flmaciela1500%5Falumno%5Fipn%5Fmx%2FDocuments%2Feasybroker%2Flista%20%5Fpropiedades2%2Epng&parent=%2Fpersonal%2Flmaciela1500%5Falumno%5Fipn%5Fmx%2FDocuments%2Feasybroker "Listado paginación")
 ![listado2](https://github.com/r-maciel/easybroker/blob/main/ss/lista_propiedades2.png?raw=True "listado2")
 
 La siguiente página que verás será la de la propiedad cuando des click en el título de alguna
-[![Propiedad](blob:https://correoipn-my.sharepoint.com/eb36a654-e480-412f-b7cb-1a03b70252e4 "Propiedad")](https://correoipn-my.sharepoint.com/personal/lmaciela1500_alumno_ipn_mx/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Flmaciela1500%5Falumno%5Fipn%5Fmx%2FDocuments%2Feasybroker%2Fpropiedad1%2Epng&parent=%2Fpersonal%2Flmaciela1500%5Falumno%5Fipn%5Fmx%2FDocuments%2Feasybroker "Propiedad")
 ![propiedad1](https://github.com/r-maciel/easybroker/blob/main/ss/propiedad1.png?raw=True "propiedad1")
 Abajo aparecerá un mapa mostrando la localización en caso de que tenga latitud y longitud
-[![Propiedad mapa](blob:https://correoipn-my.sharepoint.com/016acafa-5116-4ce5-aceb-e3fcc5354334 "Propiedad mapa")](https://correoipn-my.sharepoint.com/personal/lmaciela1500_alumno_ipn_mx/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Flmaciela1500%5Falumno%5Fipn%5Fmx%2FDocuments%2Feasybroker%2Fpropiedad2%2Epng&parent=%2Fpersonal%2Flmaciela1500%5Falumno%5Fipn%5Fmx%2FDocuments%2Feasybroker "Propiedad mapa")
 ![propiedad2](https://github.com/r-maciel/easybroker/blob/main/ss/propiedad2.png?raw=True "propiedad2")
 
 Cuando enviemos un mensaje, si los datos no están correctos nos mostrará en que nos equivocamos sin borrar los datos anteriores
-[![message error](blob:https://correoipn-my.sharepoint.com/4072cb6f-b4c8-4eba-a204-a4dcb1f88b7d "message error")](https://correoipn-my.sharepoint.com/personal/lmaciela1500_alumno_ipn_mx/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Flmaciela1500_alumno_ipn_mx%2FDocuments%2Feasybroker%2Fpropiedad3%2Epng&parent=%2Fpersonal%2Flmaciela1500_alumno_ipn_mx%2FDocuments%2Feasybroker "message error")
 ![propiedad3](https://github.com/r-maciel/easybroker/blob/main/ss/propiedad3.png?raw=True "propiedad3")
 Si el mensaje se logra enviar nos mostrara un alert diciendonos que se ha enviado
-[![message success](blob:https://correoipn-my.sharepoint.com/a43cfec8-12e4-4a8c-8378-bca27b06d76a "message success")](https://correoipn-my.sharepoint.com/personal/lmaciela1500_alumno_ipn_mx/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Flmaciela1500%5Falumno%5Fipn%5Fmx%2FDocuments%2Feasybroker%2Fpropiedad4%2Epng&parent=%2Fpersonal%2Flmaciela1500%5Falumno%5Fipn%5Fmx%2FDocuments%2Feasybroker "message success")
 ![propiedad4](https://github.com/r-maciel/easybroker/blob/main/ss/propiedad4.png?raw=True "propiedad4")
 
 En caso de que no se encuentre el ID de la propiedad nos mostrará un template de error
-[![error page](https://correoipn-my.sharepoint.com/personal/lmaciela1500_alumno_ipn_mx/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Flmaciela1500%5Falumno%5Fipn%5Fmx%2FDocuments%2Feasybroker%2Ferror%2Epng&parent=%2Fpersonal%2Flmaciela1500%5Falumno%5Fipn%5Fmx%2FDocuments%2Feasybroker "error page")](https://correoipn-my.sharepoint.com/personal/lmaciela1500_alumno_ipn_mx/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Flmaciela1500%5Falumno%5Fipn%5Fmx%2FDocuments%2Feasybroker%2Ferror%2Epng&parent=%2Fpersonal%2Flmaciela1500%5Falumno%5Fipn%5Fmx%2FDocuments%2Feasybroker "error page")
 ![error](https://github.com/r-maciel/easybroker/blob/main/ss/error.png?raw=True "error")
 
-En caso de que ni las imágenes ni los links funcionen, aquí dejo el link hacia ellas: https://correoipn-my.sharepoint.com/:f:/g/personal/lmaciela1500_alumno_ipn_mx/EnkscfYG3NRDrCiCYwL-9bYBmXMaVBmcUVd-S2eZ-YBa9Q?e=dPAxpX
+En caso de que las imagenes no carguen aqui esta el lik de ellas, o en la carpeta ss: https://correoipn-my.sharepoint.com/:f:/g/personal/lmaciela1500_alumno_ipn_mx/EnkscfYG3NRDrCiCYwL-9bYBmXMaVBmcUVd-S2eZ-YBa9Q?e=dPAxpX
 
 ## Notas
 Una de las cosas que decidí implementear fue el guardar la API KEY en un archivo .env, para que no estuvieran directamente en el código y de esta forma dar un poco más de seguridad, ya que en producción este archivo no se sube y se almacenan en las variables del sistema.
