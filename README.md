@@ -91,3 +91,5 @@ PD. Los archivos que considero tienen la lógica que yo construí, quitando los 
 - properties/mypaginator.py
 - properties/tests.py
 - Toda la carpeta de templates, ya que creo que la modularidad de los templates para reutilizarse y no repetir código en ellos es importante
+
+PD2. Si está algo pesado es por las screenshots del sitio que juntas pesan casi 4 MB
