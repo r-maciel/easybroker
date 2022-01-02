@@ -2,31 +2,12 @@ from django.shortcuts import redirect, render
 from django.views.decorators.http import require_http_methods
 from django.urls import reverse
 from django.contrib import messages
-import requests, math, json
+import math, json
+
+# Importamos nuestra clase para hacer request
+from .myrequest import MyRequest
 # Importamos nuestro form
 from .forms import ContactMessage
-
-def make_request(url, method, data = {}):
-    """ Realizar peticiones a cualquier URL """
-    headers = {'accept': 'application/json', 'content-type': 'application/json', 'X-Authorization': 'l7u502p8v46ba3ppgvj5y2aad50lb9'}
-    try:
-        response = requests.request(method, url, headers=headers, data=data)
-        data = response.json()
-        code = response.status_code
-    except requests.exceptions.RequestException as e:
-        code = data = None
-        print(f'\n{e}\n')
-        
-    return code, data
-
-def status_not_successful(code, data):
-    """ Devuelve True, si la petición no fue exitosa e imprime los errores """
-    if code != 200:
-        if code:
-            print(f'\nError code: {code}')
-            print(f"Error details: {data['error']}\n")
-
-        return True
 
 def get_paginator(limit, page, data, index_len, url):
     """ Datos de la paginación en templates """
@@ -56,17 +37,18 @@ def index(request):
 
     url = f'https://api.stagingeb.com/v1/properties?page={page}&limit={limit}&search%5Bstatuses%5D%5B%5D={status}'
 
-    code, data = make_request(url, 'GET')
-    
-    if status_not_successful(code, data): 
+    new_request = MyRequest(url, 'GET')
+    new_request.make_request()
+
+    if new_request.not_successful():
         return render(request, 'error.html')
     
-    if not data['content']:
+    if not new_request.response_data['content']:
         return redirect('properties:index')
 
     context = {
-        'properties': data['content'],
-        'paginator': get_paginator(limit, page, data['pagination'], 3, 'properties:index'),
+        'properties': new_request.response_data['content'],
+        'paginator': get_paginator(limit, page, new_request.response_data['pagination'], 3, 'properties:index'),
     }
 
     return render(request, 'properties/index.html', context)
@@ -76,14 +58,15 @@ def details(request, pk):
     """ Vista para los detalles de las propiedades """
     url = f'https://api.stagingeb.com/v1/properties/{pk}'
 
-    code, data = make_request(url, 'GET')
+    new_request = MyRequest(url, 'GET')
+    new_request.make_request()
 
-    if status_not_successful(code, data): 
+    if new_request.not_successful(): 
         return render(request, 'error.html')
 
     form = ContactMessage(request.session['form_data']) if 'form_data' in request.session else ContactMessage()
     context = {
-        'property': data,
+        'property': new_request.response_data,
         'form': form,
     }
 
@@ -102,9 +85,10 @@ def message(request, pk):
         data_to_send['property_id'] = pk
         data_to_send['source'] = 'luisroberto.com'
 
-        code, data = make_request(url, 'POST', data=json.dumps(data_to_send))
+        new_request = MyRequest(url, 'POST', json.dumps(data_to_send))
+        new_request.make_request()
 
-        if status_not_successful(code, data): 
+        if new_request.not_successful(): 
             messages.warning(request, 'Tu mensaje no pudo ser entregado. Inténtalo más tarde.')
             request.session['form_data'] = form_data
         else:
