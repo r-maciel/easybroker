@@ -1,13 +1,16 @@
 from django.shortcuts import redirect, render
 from django.views.decorators.http import require_http_methods
-import requests, math
+from django.urls import reverse
+from django.contrib import messages
+import requests, math, json
+# Importamos nuestro form
+from .forms import ContactMessage
 
-def make_request(url):
+def make_request(url, method, data = {}):
     """ Realizar peticiones a cualquier URL """
     headers = {'accept': 'application/json', 'content-type': 'application/json', 'X-Authorization': 'l7u502p8v46ba3ppgvj5y2aad50lb9'}
-    method = 'GET'
     try:
-        response = requests.request(method, url, headers=headers)
+        response = requests.request(method, url, headers=headers, data=data)
         data = response.json()
         code = response.status_code
     except requests.exceptions.RequestException as e:
@@ -53,7 +56,7 @@ def index(request):
 
     url = f'https://api.stagingeb.com/v1/properties?page={page}&limit={limit}&search%5Bstatuses%5D%5B%5D={status}'
 
-    code, data = make_request(url)
+    code, data = make_request(url, 'GET')
     
     if status_not_successful(code, data): 
         return render(request, 'error.html')
@@ -73,13 +76,42 @@ def details(request, pk):
     """ Vista para los detalles de las propiedades """
     url = f'https://api.stagingeb.com/v1/properties/{pk}'
 
-    code, data = make_request(url)
+    code, data = make_request(url, 'GET')
 
     if status_not_successful(code, data): 
         return render(request, 'error.html')
 
+    form = ContactMessage(request.session['form_data']) if 'form_data' in request.session else ContactMessage(initial={'property_id': data['public_id']})
     context = {
         'property': data,
+        'form': form,
     }
 
     return render(request, 'properties/details.html', context)
+
+@require_http_methods(["POST"])
+def message(request, pk):
+    """ Crear un nuevo mensaje para la propiedad """
+    url = 'https://api.stagingeb.com/v1/contact_requests'
+
+    form_data = request.POST
+    form = ContactMessage(form_data)
+
+    if form.is_valid():
+        data_to_send = form.cleaned_data
+        data_to_send['source'] = 'luisroberto.com'
+
+        code, data = make_request(url, 'POST', data=json.dumps(data_to_send))
+
+        if status_not_successful(code, data): 
+            messages.warning(request, 'Tu mensaje no pudo ser entregado. Inténtalo más tarde.')
+            request.session['form_data'] = form_data
+        else:
+            if 'form_data' in request.session:
+                del request.session['form_data']
+
+            messages.success(request, '¡Mensaje enviado exitosamente!')
+    else:
+        request.session['form_data'] = form_data
+
+    return redirect(reverse('properties:details', args=[pk]))
