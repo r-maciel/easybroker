@@ -81,7 +81,7 @@ def details(request, pk):
     if status_not_successful(code, data): 
         return render(request, 'error.html')
 
-    form = ContactMessage(request.session['form_data']) if 'form_data' in request.session else ContactMessage(initial={'property_id': data['public_id']})
+    form = ContactMessage(request.session['form_data']) if 'form_data' in request.session else ContactMessage()
     context = {
         'property': data,
         'form': form,
@@ -99,6 +99,7 @@ def message(request, pk):
 
     if form.is_valid():
         data_to_send = form.cleaned_data
+        data_to_send['property_id'] = pk
         data_to_send['source'] = 'luisroberto.com'
 
         code, data = make_request(url, 'POST', data=json.dumps(data_to_send))

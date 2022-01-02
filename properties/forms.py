@@ -31,8 +31,3 @@ class ContactMessage(forms.Form):
         max_length=1000, 
         widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 5})
     )
-    property_id = forms.CharField(
-        label='phone', 
-        max_length=10, 
-        widget=forms.HiddenInput
-    )
