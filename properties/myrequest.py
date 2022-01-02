@@ -3,11 +3,11 @@ import requests
 class MyRequest:
     """ Clase para realizar requests JSON"""
 
-    def __init__(self, url, method, request_data={}):
+    def __init__(self, url, method, headers={}, request_data={}):
         self.url = url
         self.method = method
         self.request_data = request_data
-        self.headers = {'accept': 'application/json', 'content-type': 'application/json', 'X-Authorization': 'l7u502p8v46ba3ppgvj5y2aad50lb9'}
+        self.headers = headers
     
     def make_request(self):
         """ Realizar peticiones a cualquier URL """
