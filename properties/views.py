@@ -2,30 +2,14 @@ from django.shortcuts import redirect, render
 from django.views.decorators.http import require_http_methods
 from django.urls import reverse
 from django.contrib import messages
-import math, json
+import json
 
 # Importamos nuestra clase para hacer request
 from .myrequest import MyRequest
+# Importamos nuestra clase paginar
+from .mypaginator import MyPaginator
 # Importamos nuestro form
 from .forms import ContactMessage
-
-def get_paginator(limit, page, data, index_len, url):
-    """ Datos de la paginación en templates """
-    next_page = (page + 1) if data['next_page'] else None
-    last_page = math.ceil(data['total'] / limit)
-    prev_page = (page - 1) if page > 1 else None
-    pages = [i for i in range(page, page+index_len)] if last_page - page > 1 else [i+1 for i in range(last_page - index_len, last_page)]
-
-    paginator = {
-        'current_page': page,
-        'next_page': next_page,
-        'prev_page': prev_page,
-        'last_page': last_page,
-        'pages': pages,
-        'url': url,
-    }
-
-    return paginator
     
 # Create your views here.
 @require_http_methods(["GET"])
@@ -48,7 +32,7 @@ def index(request):
 
     context = {
         'properties': new_request.response_data['content'],
-        'paginator': get_paginator(limit, page, new_request.response_data['pagination'], 3, 'properties:index'),
+        'paginator': MyPaginator(limit, page, new_request.response_data['pagination'], 3, 'properties:index'),
     }
 
     return render(request, 'properties/index.html', context)
