@@ -4,7 +4,8 @@ El proyecto está construido en Django por lo cuál se necesita python para pode
 
 Para instalar y correr la app siga los siguientes pasos:
 1. Clone este repositorio
-1. Instale las dependencias con el siguiente comando (Se recomienda iniciar un entorno virtual primero):
+1. Abre una terminal colocándote dentro de la raiz del repositorio 
+1. Instale las dependencias con el siguiente comando (Se recomienda iniciar un entorno virtual antes de instalar las dependencias):
 `pip install -r ./requirements.txt`
 
 ### Correr los tests
